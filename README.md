@@ -37,11 +37,11 @@ The model gets one rewrite before the user sees anything, and the bounce says ex
 
 ```sh
 git clone <REPO_URL> ~/.claude/gates
-chmod +x ~/.claude/gates/hooks/*.py ~/.claude/gates/install.py
-cp -n ~/.claude/gates/settings.example.json ~/.claude/settings.json
+chmod +x ~/.claude/gates/hooks/*.py
+python3 ~/.claude/gates/install.py
 ```
 
-Already have a `~/.claude/settings.json`? Run `python3 ~/.claude/gates/install.py` instead of the last line. It merges the hooks block, keeps your other settings and hooks, writes a `.bak-gates` backup, and is safe to run twice.
+The last line wires `settings.example.json` into `~/.claude/settings.json`: it creates the file if you have none, or merges the hooks block into yours, keeping your other settings and hooks and writing a `.bak-gates` backup first. It is safe to run twice. Prefer to do it by hand? Copy the `hooks` block from `settings.example.json`.
 
 Needs Python 3.8+ (standard library only) on Linux or macOS, and a Claude Code recent enough to have the `StopFailure`, `ConfigChange` and `PostToolUseFailure` hook events. The two judged tripwires call `claude -p` on your existing login, so `claude` must be on `PATH`; without it they stand down and every other gate still runs.
 
