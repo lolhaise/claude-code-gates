@@ -43,7 +43,7 @@ python3 ~/.claude/gates/install.py
 
 The last line wires `settings.example.json` into `~/.claude/settings.json`: it creates the file if you have none, or merges the hooks block into yours, keeping your other settings and hooks and writing a `.bak-gates` backup first. It is safe to run twice. Prefer to do it by hand? Copy the `hooks` block from `settings.example.json`.
 
-Needs Python 3.8+ (standard library only) on Linux or macOS, and a Claude Code recent enough to have the `StopFailure`, `ConfigChange` and `PostToolUseFailure` hook events. The two judged tripwires call `claude -p` on your existing login, so `claude` must be on `PATH`; without it they stand down and every other gate still runs.
+Needs Python 3.8+ (standard library only; tested on Linux with 3.8, 3.13 and 3.14, macOS untested) and a Claude Code recent enough to have the `StopFailure`, `ConfigChange` and `PostToolUseFailure` hook events. The two judged tripwires call `claude -p` on your existing login, so `claude` must be on `PATH`; without it they stand down and every other gate still runs.
 
 Check it: `python3 ~/.claude/gates/tests/run_tests.py` prints `238/238 passed`.
 

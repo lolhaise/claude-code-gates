@@ -21,8 +21,8 @@ RULES = [
     ("rm",
      re.compile(r"(?:^|[;&|(]|\$\(|`)\s*rm\s+(?!-h\b)"),
      lambda c: not re.search(r"\b(?:git|npm|pnpm|yarn|docker|apt(?:-get)?)\s+rm\b", c),
-     "Use `trash <path>` instead of rm: a trashed file can be restored, a removed one cannot "
-     "(trash-cli on Linux, `trash` on macOS). git/npm/docker/apt rm are exempt; if this "
+     "Use `trash <path>` (trash-cli or your platform's trash command) instead of rm: a trashed "
+     "file can be restored, a removed one cannot. git/npm/docker/apt rm are exempt; if this "
      "pattern caught a legitimate command, rephrase it."),
     ("journalctl-today",
      re.compile(r"journalctl.*--since[= ][\"']?today\s+\d"),
